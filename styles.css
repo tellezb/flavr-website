@@ -111,7 +111,7 @@ nav {
     color: white;
     text-align: center;
     padding: 2rem;
-    margin-top: 70px;
+    margin-top: var(--header-height);
 }
 
 .hero-icon {
@@ -538,6 +538,9 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    :root {
+        --header-height: 110px;
+    }
     .hero-content h1 {
         font-size: 2.5rem;
     }
