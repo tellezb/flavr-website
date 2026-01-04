@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Thanks for signing up for Flavr early access.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex">
+  <title>Thanks — Flavr Early Access</title>
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="assets/images/icon.png">
+  <link rel="stylesheet" href="styles.css">
+  <script async data-uid="ce0ba06439" src="https://flavr.kit.com/ce0ba06439/index.js"></script>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html" class="logo-container">
+        <div class="logo">Flavr</div>
+        <div class="logo-tagline">Discover. Cook. Grow.</div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#why">Why Flavr</a></li>
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a class="nav-cta" href="index.html#early-access">Early Access</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <img src="assets/images/icon.png" alt="Flavr App Icon" class="hero-icon">
+        <h1>Thanks for signing up!</h1>
+        <p class="tagline">Welcome to the Flavr community.</p>
+        <p class="hero-description">Watch your inbox for updates, news, and opportunitites to engage.</p>
+
+        <div class="cta-buttons">
+          <a href="index.html" class="btn btn-primary">Return Home</a>
+        </div>
+      </div>
+    </section>
+
+    
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Flavr. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.scroll-animate').forEach(element => {
+      observer.observe(element);
+    });
+  </script>
+</body>
+</html>
