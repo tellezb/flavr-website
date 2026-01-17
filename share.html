@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opening Flavr Recipe...</title>
+    <meta name="description" content="Opening your shared Flavr recipe. If you don't have the app installed, you can download it from the App Store or Google Play.">
+    
+    <!-- Open Graph Meta Tags for Social Sharing -->
+    <meta property="og:title" content="Check out this recipe on Flavr">
+    <meta property="og:description" content="Discover this amazing recipe in Flavr - your personal recipe manager meets social discovery. All your recipes in one beautiful app.">
+    <meta property="og:image" content="https://flavr.app/assets/images/share-preview.png">
+    <meta property="og:image:alt" content="Flavr Recipe Manager">
+    <meta property="og:url" content="https://flavr.app/share">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Flavr">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Check out this recipe on Flavr">
+    <meta name="twitter:description" content="Discover this amazing recipe in Flavr - your personal recipe manager meets social discovery.">
+    <meta name="twitter:image" content="https://flavr.app/assets/images/share-preview.png">
+    
+    <!-- Apple-specific -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Flavr">
+    <link rel="apple-touch-icon" href="assets/images/icon.png">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #F95320;
+            --secondary-color: #FFB63B;
+            --accent-color: #FFE6DD;
+            --dark-color: #1A1A1A;
+            --light-color: #F6F7F8;
+            --text-color: #1A1A1A;
+            --text-secondary: #4B5563;
+            --border-color: #E6D7C6;
+            --surface: #FFFFFF;
+            --error-color: #E74C3C;
+            --success-color: #27AE60;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: linear-gradient(135deg, var(--primary-color) 0%, #FF7D40 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .container {
+            background: var(--surface);
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 100%;
+            padding: 2rem;
+            text-align: center;
+            animation: slideUp 0.4s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .logo-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(249, 83, 32, 0.15);
+            flex-shrink: 0;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 48px;
+            height: 48px;
+            border: 4px solid var(--accent-color);
+            border-top-color: var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 1rem 0;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+
+        .message {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin: 1rem 0;
+            line-height: 1.6;
+        }
+
+        .loading-state {
+            display: none;
+        }
+
+        .loading-state.active {
+            display: block;
+        }
+
+        .fallback-state {
+            display: none;
+        }
+
+        .fallback-state.active {
+            display: block;
+        }
+
+        .error-state {
+            display: none;
+        }
+
+        .error-state.active {
+            display: block;
+        }
+
+        .error-icon {
+            font-size: 3rem;
+            margin: 1rem 0;
+        }
+
+        .warning-box {
+            background: #FFF3CD;
+            border-left: 4px solid #FFC107;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+            text-align: left;
+            color: #856404;
+            font-size: 0.9rem;
+        }
+
+        .recipe-preview {
+            background: var(--light-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        .recipe-preview h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .recipe-preview p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin: 0.25rem 0;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #E84410;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(249, 83, 32, 0.3);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: var(--secondary-color);
+            color: var(--dark-color);
+        }
+
+        .btn-secondary:hover {
+            background: #FFA500;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 182, 59, 0.3);
+        }
+
+        .btn-secondary:active {
+            transform: translateY(0);
+        }
+
+        .btn-text {
+            background: transparent;
+            color: var(--primary-color);
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+        }
+
+        .btn-text:hover {
+            color: #E84410;
+        }
+
+        .app-store-badge {
+            display: inline-block;
+            margin: 0.5rem;
+            text-align: center;
+        }
+
+        .store-row {
+            display: flex;
+            gap: 0.75rem;
+            margin: 1rem 0;
+        }
+
+        .store-row a {
+            flex: 1;
+        }
+
+        .store-button {
+            background: var(--dark-color);
+            color: white;
+            padding: 0.875rem 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .store-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .store-button:active {
+            transform: translateY(0);
+        }
+
+        .store-badge {
+            font-size: 1.5rem;
+        }
+
+        .divider {
+            margin: 1.5rem 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .secondary-text {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 1rem;
+        }
+
+        .copy-token-btn {
+            font-size: 0.8rem;
+            padding: 0.5rem 1rem;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 1.5rem;
+            }
+
+            .logo {
+                font-size: 2rem;
+            }
+
+            h1 {
+                font-size: 1.25rem;
+            }
+
+            .button-group {
+                gap: 0.75rem;
+            }
+
+            .btn {
+                padding: 0.875rem 1rem;
+                font-size: 0.95rem;
+            }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Loading State -->
+        <div class="loading-state active">
+            <div class="logo-section">
+                <img src="assets/images/icon.png" alt="Flavr" class="logo-icon">
+                <div class="logo">Flavr</div>
+            </div>
+            <div class="loading-spinner"></div>
+            <h1>Opening Your Recipe...</h1>
+            <p class="message">If you have Flavr installed, the app will open in a moment.</p>
+        </div>
+
+        <!-- Fallback State (App Not Installed) -->
+        <div class="fallback-state">
+            <div class="logo-section">
+                <img src="assets/images/icon.png" alt="Flavr" class="logo-icon">
+                <div class="logo">Flavr</div>
+            </div>
+            <h1>Recipe Shared with You</h1>
+            <p class="message">
+                The Flavr app isn't installed on this device. Download it now to view your shared recipe.
+            </p>
+
+            <div class="recipe-preview hidden" id="recipePreview">
+                <h3 id="recipeName"></h3>
+                <p><strong>Prep Time:</strong> <span id="recipePrep"></span></p>
+                <p><strong>Cook Time:</strong> <span id="recipeCook"></span></p>
+                <p id="recipeDescription"></p>
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-primary" disabled style="opacity: 0.6; cursor: not-allowed;">
+                    📱 iOS App - Coming Soon
+                </button>
+                <button class="btn btn-primary" disabled style="opacity: 0.6; cursor: not-allowed;">
+                    🤖 Android App - Coming Soon
+                </button>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="secondary-text">
+                <p>Have the app installed? <a href="#" id="retryBtn" style="color: var(--primary-color); font-weight: 600;">Try opening the recipe again</a></p>
+            </div>
+        </div>
+
+        <!-- Error State -->
+        <div class="error-state">
+            <div class="logo-section">
+                <img src="assets/images/icon.png" alt="Flavr" class="logo-icon">
+                <div class="logo">Flavr</div>
+            </div>
+            <div class="error-icon">⚠️</div>
+            <h1>Unable to Open Recipe</h1>
+            <p class="message">
+                There was an issue opening the shared recipe. The token may be invalid or expired.
+            </p>
+
+            <div class="warning-box">
+                <strong>Token:</strong> <span id="tokenDisplay"></span>
+                <button class="btn btn-text copy-token-btn" id="copyTokenBtn">Copy Token</button>
+            </div>
+
+            <div class="button-group">
+                <a href="https://flavr.app" class="btn btn-primary">
+                    🏠 Back to Flavr Home
+                </a>
+                <button class="btn btn-secondary" disabled style="opacity: 0.6; cursor: not-allowed;">
+                    📱 iOS App - Coming Soon
+                </button>
+                <button class="btn btn-secondary" disabled style="opacity: 0.6; cursor: not-allowed;">
+                    🤖 Android App - Coming Soon
+                </button>
+            </div>
+
+            <p class="secondary-text">Error logged for debugging. Please contact support if the issue persists.</p>
+        </div>
+    </div>
+
+    <script>
+        // Configuration
+        const CONFIG = {
+            DEEP_LINK_SCHEME: 'flavr://',
+            FALLBACK_TIMEOUT: 2500, // 2.5 seconds
+            LOG_ENDPOINT: '/api/logs', // Optional: configure your logging endpoint
+        };
+
+        // Utility: Get token from URL parameters
+        function getTokenFromUrl() {
+            // Try query parameter first: /share.html?token=xyz
+            const params = new URLSearchParams(window.location.search);
+            const token = params.get('token');
+            
+            if (token) {
+                return token;
+            }
+
+            // Try pathname: /share/xyz
+            const pathParts = window.location.pathname.split('/');
+            const shareIndex = pathParts.indexOf('share');
+            if (shareIndex !== -1 && pathParts[shareIndex + 1]) {
+                return pathParts[shareIndex + 1];
+            }
+
+            return null;
+        }
+
+        // Utility: Log errors for debugging
+        function logError(message, details = {}) {
+            const errorLog = {
+                timestamp: new Date().toISOString(),
+                message,
+                url: window.location.href,
+                userAgent: navigator.userAgent,
+                details,
+            };
+
+            console.error('[Flavr Share Error]', errorLog);
+
+            // Optional: Send to server
+            if (CONFIG.LOG_ENDPOINT) {
+                fetch(CONFIG.LOG_ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(errorLog),
+                }).catch(err => console.error('Failed to send error log:', err));
+            }
+
+            return errorLog;
+        }
+
+        // Utility: Detect if app was opened (best guess)
+        function detectAppOpened() {
+            // This is a heuristic: if the page visibility changes or the app opens,
+            // we won't see the fallback. This works on iOS and Android.
+            return new Promise((resolve) => {
+                let appOpened = false;
+
+                const handleVisibilityChange = () => {
+                    if (document.hidden) {
+                        appOpened = true;
+                        resolve(true);
+                    }
+                };
+
+                document.addEventListener('visibilitychange', handleVisibilityChange);
+
+                // Fallback: assume app opened after timeout if nothing happened
+                setTimeout(() => {
+                    document.removeEventListener('visibilitychange', handleVisibilityChange);
+                    resolve(appOpened);
+                }, CONFIG.FALLBACK_TIMEOUT);
+            });
+        }
+
+        // Utility: Open deep link
+        function openDeepLink(token) {
+            const deepLink = `${CONFIG.DEEP_LINK_SCHEME}share?token=${encodeURIComponent(token)}`;
+            
+            console.log('[Flavr Share] Attempting to open deep link:', deepLink);
+
+            // Method 1: Try iframe approach (works on some platforms)
+            try {
+                const iframe = document.createElement('iframe');
+                iframe.style.display = 'none';
+                iframe.src = deepLink;
+                document.body.appendChild(iframe);
+                setTimeout(() => iframe.remove(), 100);
+            } catch (err) {
+                console.warn('[Flavr Share] Iframe method failed:', err);
+            }
+
+            // Method 2: Direct window.location assignment (most compatible)
+            // Use a small delay to allow iframe to start loading
+            setTimeout(() => {
+                window.location.href = deepLink;
+            }, 50);
+        }
+
+        // Utility: Update meta tags for dynamic content
+        function updateMetaTags(token, recipeName = null) {
+            const title = recipeName 
+                ? `${recipeName} - Shared on Flavr` 
+                : `Check out this recipe on Flavr`;
+            
+            document.title = title;
+            updateMetaTag('og:title', title);
+            updateMetaTag('twitter:title', title);
+
+            const description = recipeName
+                ? `Discover this amazing recipe "${recipeName}" on Flavr - your personal recipe manager meets social discovery.`
+                : 'Discover this amazing recipe on Flavr - your personal recipe manager meets social discovery. All your recipes in one beautiful app.';
+            
+            updateMetaTag('og:description', description);
+            updateMetaTag('twitter:description', description);
+        }
+
+        function updateMetaTag(property, content) {
+            let element = document.querySelector(`meta[property="${property}"]`) ||
+                         document.querySelector(`meta[name="${property}"]`);
+            
+            if (!element) {
+                element = document.createElement('meta');
+                element.setAttribute(property.startsWith('og:') ? 'property' : 'name', property);
+                document.head.appendChild(element);
+            }
+            
+            element.setAttribute('content', content);
+        }
+
+        // UI: Show loading state
+        function showLoadingState() {
+            document.querySelector('.loading-state').classList.add('active');
+            document.querySelector('.fallback-state').classList.remove('active');
+            document.querySelector('.error-state').classList.remove('active');
+        }
+
+        // UI: Show fallback state
+        function showFallbackState() {
+            document.querySelector('.loading-state').classList.remove('active');
+            document.querySelector('.fallback-state').classList.add('active');
+            document.querySelector('.error-state').classList.remove('active');
+        }
+
+        // UI: Show error state
+        function showErrorState(token) {
+            document.querySelector('.loading-state').classList.remove('active');
+            document.querySelector('.fallback-state').classList.remove('active');
+            document.querySelector('.error-state').classList.add('active');
+            
+            if (token) {
+                document.getElementById('tokenDisplay').textContent = token;
+            }
+        }
+
+        // UI: Display recipe preview (if available from URL or localStorage)
+        function displayRecipePreview(recipeName, prepTime, cookTime, description) {
+            const preview = document.getElementById('recipePreview');
+            if (recipeName) {
+                document.getElementById('recipeName').textContent = recipeName;
+                document.getElementById('recipePrep').textContent = prepTime || 'N/A';
+                document.getElementById('recipeCook').textContent = cookTime || 'N/A';
+                document.getElementById('recipeDescription').textContent = description || '';
+                preview.classList.remove('hidden');
+                updateMetaTags(null, recipeName);
+            }
+        }
+
+        // Event: Copy token to clipboard
+        document.getElementById('copyTokenBtn')?.addEventListener('click', function() {
+            const token = document.getElementById('tokenDisplay').textContent;
+            if (token) {
+                navigator.clipboard.writeText(token).then(() => {
+                    this.textContent = '✓ Copied';
+                    setTimeout(() => {
+                        this.textContent = 'Copy Token';
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Failed to copy token:', err);
+                });
+            }
+        });
+
+        // Event: Retry opening deep link
+        document.getElementById('retryBtn')?.addEventListener('click', function(e) {
+            e.preventDefault();
+            const token = getTokenFromUrl();
+            if (token) {
+                showLoadingState();
+                openDeepLink(token);
+                setTimeout(() => {
+                    showFallbackState();
+                }, CONFIG.FALLBACK_TIMEOUT);
+            }
+        });
+
+        // Main initialization
+        async function init() {
+            try {
+                const token = getTokenFromUrl();
+
+                if (!token) {
+                    logError('No token provided in URL');
+                    showErrorState(null);
+                    return;
+                }
+
+                console.log('[Flavr Share] Initializing with token:', token);
+                updateMetaTags(token);
+                showLoadingState();
+
+                // Try to open deep link
+                openDeepLink(token);
+
+                // Wait to detect if app opened
+                const appOpenedSuccessfully = await detectAppOpened();
+
+                if (!appOpenedSuccessfully) {
+                    console.log('[Flavr Share] App did not open, showing fallback UI');
+                    showFallbackState();
+
+                    // Try to load recipe metadata from query params (optional enhancement)
+                    const recipeName = new URLSearchParams(window.location.search).get('name');
+                    const prepTime = new URLSearchParams(window.location.search).get('prep');
+                    const cookTime = new URLSearchParams(window.location.search).get('cook');
+                    const description = new URLSearchParams(window.location.search).get('desc');
+
+                    if (recipeName) {
+                        displayRecipePreview(recipeName, prepTime, cookTime, description);
+                    }
+                } else {
+                    console.log('[Flavr Share] App opened successfully');
+                }
+
+            } catch (error) {
+                logError('Initialization failed', { error: error.message });
+                showErrorState(getTokenFromUrl());
+            }
+        }
+
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+
+        // Log page visibility changes for debugging
+        document.addEventListener('visibilitychange', () => {
+            console.log('[Flavr Share] Page visibility:', document.visibilityState);
+        });
+    </script>
+</body>
+</html>
