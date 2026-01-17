@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Opening Flavr Recipe...</title>
     <meta name="description" content="Opening your shared Flavr recipe. If you don't have the app installed, you can download it from the App Store or Google Play.">
+    <meta name="robots" content="noindex, nofollow">
     
     <!-- Open Graph Meta Tags for Social Sharing -->
     <meta property="og:title" content="Check out this recipe on Flavr">
     <meta property="og:description" content="Discover this amazing recipe in Flavr - your personal recipe manager meets social discovery. All your recipes in one beautiful app.">
-    <meta property="og:image" content="https://flavr.app/assets/images/share-preview.png">
+    <meta property="og:image" content="/assets/images/share-preview.png">
     <meta property="og:image:alt" content="Flavr Recipe Manager">
-    <meta property="og:url" content="https://flavr.app/share">
+    <meta property="og:url" content="/share">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Flavr">
     
@@ -19,7 +20,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Check out this recipe on Flavr">
     <meta name="twitter:description" content="Discover this amazing recipe in Flavr - your personal recipe manager meets social discovery.">
-    <meta name="twitter:image" content="https://flavr.app/assets/images/share-preview.png">
+    <meta name="twitter:image" content="/assets/images/share-preview.png">
     
     <!-- Apple-specific -->
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -423,7 +424,7 @@
             </div>
 
             <div class="button-group">
-                <a href="https://flavr.app" class="btn btn-primary">
+                <a href="index.html" class="btn btn-primary">
                     🏠 Back to Flavr Home
                 </a>
                 <button class="btn btn-secondary" disabled style="opacity: 0.6; cursor: not-allowed;">
@@ -671,6 +672,9 @@
                     }
                 } else {
                     console.log('[Flavr Share] App opened successfully');
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 500); // Return to landing page after handing off to the app
                 }
 
             } catch (error) {
