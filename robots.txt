@@ -2,3 +2,4 @@ User-agent: *
 Disallow: /thank-you.html
 Disallow: /share.html
 Disallow: /share/
+Sitemap: https://flavrrecipesapp.com/sitemap.xml
