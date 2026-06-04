@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Flavr support center. Get help with your account, recipes, app access, and technical issues.">
+    <title>Flavr Support</title>
+    <link rel="canonical" href="https://flavrrecipesapp.com/support.html">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="apple-touch-icon" href="assets/images/icon.png">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .content-card p {
+            margin-bottom: 1rem;
+        }
+
+        .support-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .support-box {
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 1rem;
+            background: var(--light-color);
+        }
+
+        .support-box h2 {
+            font-size: 1.1rem;
+            margin: 0 0 0.5rem;
+            color: var(--dark-color);
+        }
+
+        .support-list {
+            padding-left: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        .support-list li {
+            margin: 0.45rem 0;
+        }
+
+        @media (max-width: 760px) {
+            .support-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body data-root-path=".">
+    <div data-shared-header></div>
+
+    <main class="content-page">
+        <section class="content-card">
+            <h1>Support</h1>
+            <p>If you need help with Flavr, we're here for you. Contact support by email and include as much detail as you can so we can help quickly.</p>
+            <p><strong>Email:</strong> <span data-eu="support" data-ed="flavrrecipesapp.com"></span></p>
+
+            <div class="support-grid">
+                <div class="support-box">
+                    <h2>How to Get Faster Help</h2>
+                    <ul class="support-list">
+                        <li>Describe what happened and what you expected.</li>
+                        <li>Include your device model and iOS/Android version.</li>
+                        <li>Add screenshots or screen recordings when possible.</li>
+                        <li>Tell us your app version and when the issue started.</li>
+                    </ul>
+                </div>
+
+                <div class="support-box">
+                    <h2>What We Can Help With</h2>
+                    <ul class="support-list">
+                        <li>Account access and sign-in issues.</li>
+                        <li>Recipe sharing, saving, and organization problems.</li>
+                        <li>Bug reports and performance troubleshooting.</li>
+                        <li>Privacy and data requests.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div data-shared-footer></div>
+    <script src="assets/js/shared-layout.js" defer></script>
+</body>
+</html>

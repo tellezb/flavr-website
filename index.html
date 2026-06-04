@@ -21,7 +21,7 @@
     <link rel="apple-touch-icon" href="assets/images/icon.png">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body data-root-path=".">
     <header>
         <nav>
             <a href="#" class="logo-container">
@@ -173,7 +173,7 @@
                                 <path d="M15 21c3 0 7-1 7-8V5c0-1.25-4.5-5-7-5-1.5 0-2 3-2 5s0 3 2 4 4 2 4 6-1 4-4 4z"/>
                             </svg>
                             <p class="quote-text">Cooking is inherently communal, yet in our hurried modern world, most recipe tools feel solitary and disconnected.</p>
-                            <p class="quote-attribution">Flavr founder and creator</p>
+                            <p class="quote-attribution">— Brian, Founder of Flavr</p>
                         </div>
                     </div>
                     
@@ -295,9 +295,7 @@
 
     </main>
 
-    <footer>
-        <p>&copy; 2026 Flavr. All rights reserved.</p>
-    </footer>
+    <div data-shared-footer></div>
 
     <script>
         // Intersection Observer for scroll animations
@@ -320,5 +318,6 @@
             observer.observe(element);
         });
     </script>
+    <script src="assets/js/shared-layout.js" defer></script>
 </body>
 </html>
