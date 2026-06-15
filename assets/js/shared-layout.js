@@ -40,7 +40,7 @@
                     '<a href="' + termsPath + '">Terms of Use</a> | ' +
                     '<a href="' + supportPath + '">Support</a>' +
                 '</p>' +
-                '<p class="footer-copy">&copy; ' + new Date().getFullYear() + ' Flavr. All rights reserved.</p>' +
+                '<p class="footer-copy">&copy; ' + new Date().getFullYear() + ' Flavr, LLC. All rights reserved.</p>' +
             '</footer>';
     }
     // Email address protection — assembles mailto links at runtime so raw HTML never contains a harvestable address
