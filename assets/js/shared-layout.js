@@ -1,4 +1,6 @@
 (function () {
+    var appStoreUrl = "https://apps.apple.com/us/app/flavr-recipes-meal-planning/id6756181978";
+
     function buildPath(rootPath, target) {
         if (!rootPath || rootPath === ".") {
             return target;
@@ -25,7 +27,7 @@
                         '<li><a href="' + homePath + '#why">Why Flavr</a></li>' +
                         '<li><a href="' + homePath + '#features">Features</a></li>' +
                         '<li><a href="' + homePath + '#about">About</a></li>' +
-                        '<li><a class="nav-cta" href="' + homePath + '#early-access">Join Beta</a></li>' +
+                        '<li><a class="nav-cta" href="' + homePath + '#early-access">Get Started</a></li>' +
                     '</ul>' +
                 '</nav>' +
             '</header>';
