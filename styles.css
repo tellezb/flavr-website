@@ -129,6 +129,11 @@ nav {
     animation: fadeInUp 1s ease 0.1s both;
 }
 
+.hero-title-secondary {
+    display: inline-block;
+    font-size: 0.85em;
+}
+
 .hero-subtitle {
     font-size: 1.8rem;
     margin-bottom: 1rem;
