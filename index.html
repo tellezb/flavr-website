@@ -27,14 +27,42 @@
 
     <main>
         <section class="hero">
-            <div class="hero-content">
-                <img src="assets/images/icon.png" alt="Flavr App Icon" class="hero-icon">
-                <h1>Welcome to Flavr<br><span class="hero-title-secondary">All Your Recipes, Organized for Real Life</span></h1>
-                <p class="tagline">Built for home cooks and busy families</p>
-                <p class="hero-description">Save recipes, plan meals, and cook with more confidence.</p>
-                <div class="cta-buttons">
-                    <a href="#early-access" class="btn btn-primary">Choose Your Platform</a>
-                    <a href="#why" class="btn btn-secondary">See Why It's Different</a>
+            <div class="hero-layout">
+                <div class="hero-content">
+                    <img src="assets/images/icon.png" alt="Flavr App Icon" class="hero-icon">
+                    <h1>Welcome to Flavr<br><span class="hero-title-secondary">All Your Recipes, Organized for Real Life</span></h1>
+                    <p class="tagline">Built for home cooks and busy families</p>
+                    <p class="hero-description">Save recipes, plan meals, and cook with more confidence.</p>
+                    <div class="cta-buttons">
+                        <a href="#early-access" class="btn btn-primary">Get Flavr</a>
+                        <a href="#what-is-flavr" class="btn btn-secondary">Explore the App</a>
+                    </div>
+                </div>
+                <img src="assets/images/app-screenshots/hero-transparent.png" alt="Flavr's searchable recipe collection displayed on an iPhone." class="hero-preview" width="747" height="1430" fetchpriority="high">
+            </div>
+        </section>
+
+        <section id="what-is-flavr" class="app-preview" aria-labelledby="app-preview-title">
+            <div class="app-preview-container">
+                <h2 id="app-preview-title">What Is Flavr?</h2>
+                <p>Flavr is a recipe and meal planning app that brings your cooking life together. Discover ideas from real people, save your favorite recipes, plan meals, shop for ingredients, and cook with confidence in one place.</p>
+                <div id="app-preview-gallery" class="app-preview-grid" role="region" aria-label="App Store previews" tabindex="0">
+                    <img src="assets/images/app-screenshots/recipes.jpg" alt="Save every recipe in one place with a searchable collection." width="600" height="1300" loading="lazy" decoding="async">
+                    <img src="assets/images/app-screenshots/discovery.jpg" alt="Discover meals and recipes from real people in Flavr." width="600" height="1300" loading="lazy" decoding="async">
+                    <img src="assets/images/app-screenshots/social.jpg" alt="Share recipes and inspiration with friends." width="600" height="1300" loading="lazy" decoding="async">
+                    <img src="assets/images/app-screenshots/cooking-journey.jpg" alt="Track your cooking habits, progress, and growth over time." width="600" height="1300" loading="lazy" decoding="async">
+                    <img src="assets/images/app-screenshots/cooking-help.jpg" alt="Cook with confidence using step-by-step guidance and practical AI help." width="600" height="1300" loading="lazy" decoding="async">
+                    <img src="assets/images/app-screenshots/grocery-lists.jpg" alt="Turn recipes into a grocery list in Flavr." width="600" height="1300" loading="lazy" decoding="async">
+                    <img src="assets/images/app-screenshots/online-shopping.jpg" alt="Shop for grocery list ingredients online at your favorite store." width="600" height="1300" loading="lazy" decoding="async">
+                </div>
+                <div class="app-preview-controls" role="group" aria-label="Choose an app preview" hidden></div>
+                <div class="app-preview-invite scroll-animate">
+                    <div class="app-preview-invite-copy">
+                        <span class="app-preview-eyebrow">A LITTLE MORE JOY IN EVERY MEAL</span>
+                        <h3>Make your cooking life easier.</h3>
+                        <p>Save recipes, plan meals, and create grocery lists. Flavr is <strong>free</strong> to download and use.</p>
+                    </div>
+                    <a href="#early-access" class="btn app-preview-cta">Get Flavr</a>
                 </div>
             </div>
         </section>
@@ -256,7 +284,7 @@
             </div>
         </section>
 
-        <section id="early-access" class="early-access scroll-animate">
+        <section id="early-access" class="early-access">
             <h2>Ready to Cook?</h2>
             <p>Flavr is now live on the iOS App Store and Google Play. Download it today and start organizing your recipes in one place.</p>
             <div class="download-buttons">
@@ -306,6 +334,7 @@
             observer.observe(element);
         });
     </script>
+    <script src="assets/js/app-preview.js" defer></script>
     <script src="assets/js/shared-layout.js" defer></script>
 </body>
 </html>
